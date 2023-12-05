@@ -63,8 +63,6 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
     $booksStatement->execute();
     $foundBooks = $booksStatement->fetchAll(PDO::FETCH_ASSOC);
 
-    //header("Location: home.php?search_query=" . $_GET['search_query']);
-    //exit();
 }
 
 ?>
