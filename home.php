@@ -41,12 +41,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         $welcomeMessage = "Welcome! You are successfully logged in.";
         $isAdmin = false;
     }
-/* 
-    if ($user) {
-        $welcomeMessage = "Welcome, " . $user['name'] . "! You are successfully logged in.";
-    } else {
-        $welcomeMessage = "Welcome! You are successfully logged in.";
-    } */
+
 }
 
 if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
