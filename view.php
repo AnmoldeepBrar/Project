@@ -9,7 +9,7 @@ require('connect.php');
 require('authenticate.php');
 
 $insert = "create.php";
-$view = "view.php";
+$view = "collection.php";
 $title = "fulldetails.php";
 
 $sortBy = isset($_GET['sort']) ? $_GET['sort'] : 'posttime';
@@ -56,7 +56,7 @@ function truncateContent($content, $maxLength = 200) {
 <div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
-        <li><a href="<?= $view; ?>">See your full Catalogue</a></li>
+        <li><a href="<?= $view; ?>">Book List</a></li>
         <li><a href="<?= $insert; ?>">Add book to your Collection</a></li> 
     </ul><br>
     <div id="sort-links">

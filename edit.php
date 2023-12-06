@@ -73,6 +73,7 @@ if ($id) {
 <div id = "wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
+        <li><a href="collection.php">Book List</a></li>
         <li><a href="view.php">See your full Catalogue</a></li>
         <li><a href="create.php">Add book to your Collection</a></li>
     </ul>

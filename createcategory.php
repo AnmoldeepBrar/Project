@@ -53,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>@Brar Book Store</title>
 </head>
 <body>
+<div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <?php if (!empty($errors)): ?>
         <div class="error">
@@ -67,10 +68,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="<?= $listcategory; ?>">See your full Catalogue</a></li>
             <li><a href="<?= $createcategory; ?>">Add category to your Collection</a></li> 
         </ul>
-        <p>Add book to your Collection</p>
-        <div id="wrapper">
+        <h2>Add New Category</h2>
         <form method="post" action="createcategory.php">
-            <label for="type">Ctegory</label>
+            <label for="type">Category</label>
             <input id="type" name="type"><br>
             <label for="description">Description</label>
             <textarea id="description" name="description"></textarea><br>
