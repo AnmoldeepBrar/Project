@@ -12,7 +12,7 @@ require('connect.php');
 $home = "home.php";
 $category = "category.php";
 $collection = "collection.php";
-$login = "signup.php";
+$login = "login.php";
 $about = "about.php";
 
 $isAdmin = false;
@@ -77,7 +77,8 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
     <ul id="links">
         <li><a href="<?= $home; ?>">Home Page</a></li>
         <li><a href="<?= $category; ?>">Categories</a></li>
-        <li><a href="<?= $login; ?>">Sign Up</a></li>
+        <li><a href="<?= $collection; ?>">Books</a></li>
+        <li><a href="<?= $login; ?>">Login</a></li>
         <?php if ($isAdmin): ?>
             <li><a href="<?= $about; ?>">Settings</a></li>
         <?php endif; ?>

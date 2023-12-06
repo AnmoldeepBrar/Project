@@ -49,6 +49,7 @@ if (isset($_GET['id'])) {
     <title>@Brar Book Store</title>
 </head>
 <body>
+<div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
         <li><a href="<?= $home; ?>">Home Page</a></li>
@@ -56,10 +57,8 @@ if (isset($_GET['id'])) {
             <!-- Display the "Categories" link only on the main page -->
             <li><a href="<?= $categoryPage; ?>">Categories</a></li>
         <?php endif; ?>
-        <li><a href="<?= $collection; ?>">Books List</a></li>
+        <li><a href="<?= $collection; ?>">Books</a></li>
     </ul>
-
-    <div id="wrapper">
         <?php if (!isset($category)) : ?>
             <!-- Display the list of categories -->
             <?php foreach ($categories as $categoryItem) : ?>

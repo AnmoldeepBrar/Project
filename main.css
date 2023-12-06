@@ -14,7 +14,7 @@ h1 {
 }
 
 .error {
-    background-color: blanchedalmond;
+    background-color: rgb(186, 238, 96);
     color: #990000;
     padding: 10px;
     margin: 10px;
@@ -109,10 +109,9 @@ h3, h4 {
 }
 
 ul {
+    color: antiquewhite;
     list-style-type: none;
     padding: 0;
-    background-color: #a7cdeb;
-    color: white;
 }
 
 li {
@@ -121,7 +120,7 @@ li {
 
 a {
     text-decoration: none;
-    color: black;
+    color: #007BFF;
 }
 
 a:hover {

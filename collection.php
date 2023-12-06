@@ -38,25 +38,21 @@ function truncateContent($content, $maxLength = 200) {
     <title>@Brar Book Store</title>
 </head>
 <body>
+<div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
         <li><a href="<?= $view; ?>">Home Page</a></li>
         <li><a href="<?= $categoryPage; ?>">Categories</a></li>
-        <li><a href="<?= $collection; ?>">Book List</a></li>
-        <!-- <li><a href="<?= $insert; ?>">Add book to your Collection</a></li>  -->
-
+        <li><a href="<?= $collection; ?>">Books</a></li>
     </ul>
-    <div id="wrapper">
-        <table>
+    <table border="2">
             <thead>
                 <tr>
                     <th>Title</th>
                     <th>Author</th>
-                    <!-- <th>Description</th> -->
+                    <th>Image</th>
                     <th>Available Copies</th>
                     <th>Total Copies</th>
-                    <!-- <th>Last Update</th> -->
-                    <!-- <th>Explore</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -64,16 +60,15 @@ function truncateContent($content, $maxLength = 200) {
                     <tr>
                         <td><a href="fulldetails.php?book_id=<?= $book['id']; ?>"><?= $book['title']; ?></a></td>
                         <td><?= $book['author']; ?></td>
-                        <!-- <td><?= truncateContent($book['description']); ?></td> -->
+                        <td>
+                            <?php if ($book['image']): ?>
+                                <img src="<?= $book['image']; ?>" alt="<?= $book['title']; ?>" style="max-width: 150px; max-height: 150px;">
+                                <?php else: ?>
+                                     No Image Available
+                                <?php endif; ?>
+                        </td>
                         <td><?= $book['avaliablecopies']; ?></td>
                         <td><?= $book['totalcopies']; ?></td>
-                        <!-- <td><?php if (isset($book['posttime'])) : ?>
-                            <?php
-                            $datetime = strtotime($book['posttime']);
-                            echo date('F j, Y h:i a', $datetime);
-                            ?>
-                        <?php endif; ?></td> -->
-                        <!-- <td><a href="fulldetails.php?id=<?= $book['id']; ?>">View Details</a></td> -->
                     </tr>
                 <?php endforeach; ?>
             </tbody>
