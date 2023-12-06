@@ -61,6 +61,7 @@ if ($id) {
     <title>@Brar Book Store</title>
 </head>
 <body>
+    <div id = "wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
         <li><a href="category.php">See your full Catalogue</a></li>
@@ -84,5 +85,6 @@ if ($id) {
 <?php else: ?>
     <p>Category is not found.</p>
 <?php endif; ?>
+</div>
 </body>
 </html>
