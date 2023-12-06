@@ -11,10 +11,11 @@ require('connect.php');
 
 $insert = "create.php";
 $view = "view.php";
-$collection ="category.php";
 $id = null;
-$details = "fulldetails.php";
-$home = "home.php";
+$title = "fulldetails.php";
+$view = "home.php";
+$categoryPage = "category.php";
+$list = "collection.php";
 //$commentsQuery="";
 
 
@@ -130,9 +131,10 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
 <div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
-        <li><a href="<?= $view; ?>">See your full Catalogue</a></li>
-        <li><a href="<?= $insert; ?>">Add book to your Collection</a></li>
-    </ul> 
+        <li><a href="<?= $view; ?>">Home Page</a></li>
+        <li><a href="<?= $categoryPage; ?>">Categories</a></li>
+        <li><a href="<?= $collection; ?>">Books</a></li>
+    </ul>
     <form method="get" action="<?= $home; ?>">
         <input type="text" name="search_query" placeholder="Search category...">
         <button type="submit">Search</button>
