@@ -53,7 +53,12 @@ function truncateContent($content, $maxLength = 200) {
     <title>@Brar Book Store</title>
 </head>
 <body>
+<div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
+    <ul id="links">
+        <li><a href="<?= $view; ?>">See your full Catalogue</a></li>
+        <li><a href="<?= $insert; ?>">Add book to your Collection</a></li> 
+    </ul><br>
     <div id="sort-links">
         <p>Sort By: 
             <a href="?sort=title&order=<?= $sortOrder === 'ASC' ? 'DESC' : 'ASC' ?>">Title</a>, 
@@ -62,11 +67,6 @@ function truncateContent($content, $maxLength = 200) {
             <a href="?sort=posttime&order=DESC">Latest Updated</a>
         </p>
     </div>
-    <ul id="links">
-        <li><a href="<?= $view; ?>">See your full Catalogue</a></li>
-        <li><a href="<?= $insert; ?>">Add book to your Collection</a></li> 
-    </ul>
-    <div id="wrapper">
         <table>
             <thead>
                 <tr>

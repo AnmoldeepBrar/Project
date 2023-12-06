@@ -70,12 +70,12 @@ if ($id) {
     <title>@Brar Book Store</title>
 </head>
 <body>
+<div id = "wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
         <li><a href="view.php">See your full Catalogue</a></li>
         <li><a href="create.php">Add book to your Collection</a></li>
     </ul>
-    <div id = "wrapper">
     <?php if ($post): ?>
     <p>Edit the book:</p>
     <form method="post" action="edit.php">

@@ -9,6 +9,8 @@
 
 require('connect.php');
 
+$edit ="collection.php";
+
 if (!empty($_GET['book_id'])) {
     $book_id = filter_input(INPUT_GET, 'book_id', FILTER_VALIDATE_INT);
 
@@ -103,7 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <div id="wrapper">
-        <h1>Update the picture of the book</h1>
+    <h1>@Brar Book Store: Online Library</h1>
+        <h2>Update the picture of the book</h2>
                 <?php if ($currentImagePath): ?>
             <!-- Display delete form if the image exists -->
             <form method="post">
@@ -125,6 +128,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if (!empty($_GET['success']) && $_GET['success'] == 1): ?>
             <p>Image has been deleted successfully.</p>
         <?php endif; ?>
+        <form method="post" action="<?= $edit; ?>">
+            <button type="submit">Back</button>
+        </form> 
     </div>
 </body>
 </html>
