@@ -13,6 +13,7 @@ $title = "fulldetails.php";
 $view = "home.php";
 $categoryPage = "category.php";
 $list = "collection.php";
+$login = "login.php";
 
 $query = "SELECT * FROM `books` ORDER BY posttime DESC";
 $statement = $db->prepare($query);
@@ -44,6 +45,7 @@ function truncateContent($content, $maxLength = 200) {
         <li><a href="<?= $view; ?>">Home Page</a></li>
         <li><a href="<?= $categoryPage; ?>">Categories</a></li>
         <li><a href="<?= $collection; ?>">Books</a></li>
+        <li><a href="<?= $login; ?>">Login</a></li>
     </ul>
     <table border="2">
             <thead>

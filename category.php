@@ -12,6 +12,7 @@ $viewcategory = "viewcategory.php";
 $categoryPage = "category.php"; 
 $home = "home.php";
 $collection ="collection.php";
+$login = "login.php";
 
 // Retrieve all categories
 $query = "SELECT * FROM `category`";
@@ -58,6 +59,7 @@ if (isset($_GET['id'])) {
             <li><a href="<?= $categoryPage; ?>">Categories</a></li>
         <?php endif; ?>
         <li><a href="<?= $collection; ?>">Books</a></li>
+        <li><a href="<?= $login; ?>">Login</a></li>
     </ul>
         <?php if (!isset($category)) : ?>
             <!-- Display the list of categories -->

@@ -14,7 +14,7 @@ h1 {
 }
 
 .error {
-    background-color: rgb(186, 238, 96);
+    background-color: rgb(225, 237, 202);
     color: #990000;
     padding: 10px;
     margin: 10px;
@@ -109,7 +109,7 @@ h3, h4 {
 }
 
 ul {
-    color: rgb(222, 138, 29);
+    color: red;
     list-style-type: none;
     padding: 0;
 }

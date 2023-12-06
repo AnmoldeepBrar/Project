@@ -10,12 +10,12 @@ session_start();
 require('connect.php');
 
 $insert = "create.php";
-$view = "view.php";
-$id = null;
-$title = "fulldetails.php";
 $view = "home.php";
 $categoryPage = "category.php";
-$list = "collection.php";
+$collection ="collection.php";
+$id = null;
+$details = "fulldetails.php";
+$home = "home.php";
 //$commentsQuery="";
 
 
@@ -135,10 +135,10 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
         <li><a href="<?= $categoryPage; ?>">Categories</a></li>
         <li><a href="<?= $collection; ?>">Books</a></li>
     </ul>
-    <form method="get" action="<?= $home; ?>">
+<!--     <form method="get" action="<?= $home; ?>">
         <input type="text" name="search_query" placeholder="Search category...">
         <button type="submit">Search</button>
-        </form>
+        </form> -->
         <?php
         if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
             // Display found categories
@@ -165,7 +165,7 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
         ?>
     <?php if (isset($book)) : ?>
         <h3><?= $book['title']; ?></h3>
-        <table>
+        <table  border ="1">
             <tr>
                 <th>Author</th>
                 <td><?= $book['author']; ?></td>
@@ -181,8 +181,10 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
                 </td>
             </tr>
             <tr>
+            <?php if ($isAdmin): ?>
                 <th>Description</th>
                 <td><?= $book['description']; ?></td>
+            <?php endif; ?>
             </tr>
             <tr>
                 <th>Available Copies</th>
@@ -196,7 +198,7 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
                 <th>Last Updated</th>
                 <td><?= $formattedDate; ?></td>
             </tr>
-        </table>
+        </table><br>
         <!-- Edit and Delete buttons -->
           <!-- Edit and Back buttons -->
         <?php if ($isAdmin && isset($book)) : ?>
@@ -207,9 +209,6 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
                 <button type="submit">Edit</button>
             </form><br>
         <?php endif; ?>
-        <form method="post" action="<?= $view; ?>">
-            <button type="submit">Back</button>
-        </form> 
 
         <p><a href="#" onclick="toggleCommentForm(); return false;">Add your Comment here</a></p>
 
