@@ -136,6 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>@Brar Book Store</title>
 </head>
 <body>
+    <div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <?php if (!empty($_SESSION["errors"])): ?>
         <div class="error">
@@ -150,8 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="<?= $view; ?>">See your full Catalogue</a></li>
             <li><a href="<?= $insert; ?>">Add book to your Collection</a></li> 
         </ul>
-        <p>Add book to your Collection</p>
-        <div id="wrapper">
+        <h2>Add book to your Collection</h2>
             <form method="post" action="" enctype="multipart/form-data">
                 <label for="title">Title</label>
                 <input id="title" name="title"><br>
@@ -165,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select><br><br>
                 <label for="file">Upload Book Image:</label>
                 <input type="file" name="file" id="file">
-                <input type="submit" name="submit" value="Upload File">
+                <!-- <input type="submit" name="submit" value="Upload File"> -->
                 <?php if (!empty($_GET['success']) && $_GET['success'] == 1): ?>
                     <div id="success_message">
                         File has been uploaded and processed successfully.
