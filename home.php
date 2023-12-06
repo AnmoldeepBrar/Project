@@ -72,6 +72,7 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
     <title>@Brar Book Store</title>
 </head>
 <body>
+<div id="wrapper">
     <h1>@Brar Book Store</h1>
     <ul id="links">
         <li><a href="<?= $home; ?>">Home Page</a></li>
@@ -81,7 +82,6 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
             <li><a href="<?= $about; ?>">Settings</a></li>
         <?php endif; ?>
     </ul>
-    <div id="wrapper">
         <h2>Welcome to @Brar Book Store</h2>
         <?php if (isset($welcomeMessage)): ?>
             <p><?= $welcomeMessage; ?></p>
