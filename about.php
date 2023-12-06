@@ -42,7 +42,7 @@ $member = "members.php";
             <li><a href="<?= $comment; ?>">Comments</a></li>
             <li><a href="<?= $member; ?>">Members</a></li>
         </ul>
-    <form method="get" action="<?= $category; ?>">
+    <form method="get" action="<?= $home; ?>">
         <button type="submit">Back</button>
     </form>
     </div>
