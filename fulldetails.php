@@ -18,7 +18,6 @@ $details = "fulldetails.php";
 $home = "home.php";
 //$commentsQuery="";
 
-
 $isAdmin = false; // Initialize isAdmin as false
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
@@ -67,8 +66,122 @@ $commentsStatement->bindValue(':books_id', $id, PDO::PARAM_INT);
 $commentsStatement->execute();
 $comments = $commentsStatement->fetchAll(PDO::FETCH_ASSOC);
 
+function generateCaptcha($length = 6)
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $captchaString = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $captchaString .= $characters[rand(0, strlen($characters) - 1)];
+    }
+
+    return $captchaString;
+}
+
+//if (!isset($_SESSION['captcha'])) {
+  //  $_SESSION['captcha'] = generateCaptcha(); // Store CAPTCHA only if not set
+//}
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve the submitted comment data
+    $commenterName = filter_input(INPUT_POST, 'personname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $review = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+    // Check if the entered CAPTCHA matches the stored CAPTCHA
+    if (isset($_POST['captcha']) && isset($_SESSION['captcha'])) {
+        $enteredCaptcha = filter_input(INPUT_POST, 'captcha', FILTER_SANITIZE_STRING);
+
+        if ($enteredCaptcha === $_SESSION['captcha']) {
+            // CAPTCHA matched, process the comment
+            if (!empty($commenterName) && !empty($review) && isset($id)) {
+                try {
+                    // Insert comment into the database as before
+                    $insertQuery = "INSERT INTO `comments` (category_id, books_id, personname, review, created_at) VALUES (:category_id, :books_id, :personname, :review, NOW())";
+                    $insertStatement = $db->prepare($insertQuery);
+                    $insertStatement->bindValue(':category_id', $book['category_id'], PDO::PARAM_INT);
+                    $insertStatement->bindValue(':books_id', $id, PDO::PARAM_INT);
+                    $insertStatement->bindValue(':personname', $commenterName);
+                    $insertStatement->bindValue(':review', $review);
+                    $insertStatement->execute();
+
+                    // Clear the submitted comment data from the session
+                    unset($_SESSION['submitted_comment']);
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+            }
+
+            // Refresh the comments list after submitting a new comment
+            $commentsStatement->execute();
+            $comments = $commentsStatement->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            // CAPTCHA did not match, store the submitted comment data in session
+            $_SESSION['submitted_comment'] = [
+                'personname' => $commenterName,
+                'review' => $review
+            ];
+
+            // Set an error message
+            $_SESSION['errors'] = 'CAPTCHA verification failed. Please try again.';
+        }
+    }
+
+    // Ensure the comment form remains visible even if CAPTCHA doesn't match
+    $_SESSION['display_comment_form'] = true;
+}
+
+// Display the comment form conditionally
+$displayCommentForm = isset($_SESSION['display_comment_form']) ? $_SESSION['display_comment_form'] : false;
+
+// Clear the display flag from the session after reading it
+unset($_SESSION['display_comment_form']);
+
+
+
+
+
+// Check if the form is submitted
+/* if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Check if the entered CAPTCHA matches the stored CAPTCHA
+    if (isset($_POST['captcha']) && isset($_SESSION['captcha'])) {
+        $enteredCaptcha = filter_input(INPUT_POST, 'captcha', FILTER_SANITIZE_STRING);
+
+        if ($enteredCaptcha === $_SESSION['captcha']) {
+            // CAPTCHA matched, process the comment
+            $commenterName = filter_input(INPUT_POST, 'personname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $review = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            if (!empty($commenterName) && !empty($review) && isset($id)) {
+                try {
+                    $insertQuery = "INSERT INTO `comments` (category_id, books_id, personname, review, created_at) VALUES (:category_id, :books_id, :personname, :review, NOW())";
+                    $insertStatement = $db->prepare($insertQuery);
+                    $insertStatement->bindValue(':category_id', $book['category_id'], PDO::PARAM_INT);
+                    $insertStatement->bindValue(':books_id', $id, PDO::PARAM_INT);
+                    $insertStatement->bindValue(':personname', $commenterName);
+                    $insertStatement->bindValue(':review', $review);
+                    $insertStatement->execute();
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                }
+            }
+
+            // Clear the CAPTCHA from the session
+            unset($_SESSION['captcha']);
+        } else {
+            // CAPTCHA did not match, handle the error
+            $_SESSION['errors'] = 'CAPTCHA verification failed. Please try again.';
+        }
+    }
+    // Refresh the comments list after submitting a new comment
+    $commentsStatement->execute();
+    $comments = $commentsStatement->fetchAll(PDO::FETCH_ASSOC);
+} */
+// Generate a new CAPTCHA string and store it in the session
+//$_SESSION['captcha'] = generateCaptcha(); // Change the length as needed
+
 // Handle form submission separately
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+/* if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $commenterName = filter_input(INPUT_POST, 'personname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $review = filter_input(INPUT_POST, 'review', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -89,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Refresh the comments list after submitting a new comment
     $commentsStatement->execute();
     $comments = $commentsStatement->fetchAll(PDO::FETCH_ASSOC);
-}
+} */
 
 if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
     // Sanitize the search query
@@ -220,10 +333,21 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
 
             <label for="review">Your Comment:</label>
             <textarea id="review" name="review" rows="4"></textarea>
+            <label for="captcha">Enter CAPTCHA:</label>
+            <input type="text" id="captcha" name="captcha" placeholder="Enter CAPTCHA value">
+            <img src="captcha.php" alt="CAPTCHA Image">
+
 
             <button type="submit">Submit Comment</button>
         </form>
-
+        <?php if (isset($_SESSION['errors'])) : ?>
+            <div class="error-message">
+                <?= $_SESSION['errors']; ?>
+            </div>
+        <?php
+        // Clear the error message from the session after displaying it
+        unset($_SESSION['errors']);
+        endif; ?>
         <h4>Comments:</h4>
         <ul>
             <?php foreach ($comments as $comment) : ?>
@@ -237,7 +361,6 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
                 <li>No comments yet. Be the first to comment!</li>
             <?php endif; ?>
         </ul>
-
         <form method="post" action="<?= $collection; ?>">
             <button type="submit">Back</button>
         </form> 
