@@ -104,7 +104,10 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
     }
 }
 ?>
-        <p>Discover a wide range of books and build your collection with us.</p>
+        <p>Dive into a world of endless stories, knowledge, and imagination. At our library, each page turns into a new adventure, each book a gateway to discovery.
+            Explore our shelves filled with tales that transport you to distant lands, learning materials that fuel your curiosity, and narratives that capture your heart. Whether you're seeking a gripping novel, educational resources, or a tranquil spot to immerse yourself in the world of words, you've found your sanctuary.
+            Indulge in the joy of exploring, learning, and unwinding among the pages. Our library is not just a collection of books; it's a haven for every reader, a space to embrace the magic of literature.
+            Join us in this journey of exploration and enrichment. Welcome to a place where stories come alive and curiosity knows no bounds. Welcome to our Library!"</p>
         <p>Explore our collection and find your next favorite read!</p>
     <form method="get" action="<?= $category; ?>">
         <button type="submit">Next</button>
