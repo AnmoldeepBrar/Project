@@ -28,13 +28,13 @@ $member = "members.php";
     <title>@Brar Book Store</title>
 </head>
 <body>
+<div id="wrapper">
     <h1>@Brar Book Store</h1>
     <ul id="links">
         <li><a href="<?= $home; ?>">Home Page</a></li>
         <li><a href="<?= $category; ?>">Categories</a></li>
         <li><a href="<?= $about; ?>">Settings</a></li>
     </ul>
-    <div id="wrapper">
         <p>Settings</p>
         <ul>
             <li><a href="<?= $create; ?>">Books</a></li>
