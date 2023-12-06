@@ -3,6 +3,7 @@
 require('connect.php');
 require('authenticate.php');
 
+$about = "about.php";
 
 $query = "SELECT * FROM comments";
 $statement = $db->prepare($query);
@@ -85,7 +86,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-        </table>
+        </table><br>
+        <form method="get" action="<?= $about ?>">
+        <button type="submit">Back</button>
+    </form>
     </div>
 </body>
 </html>
