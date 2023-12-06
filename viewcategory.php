@@ -13,6 +13,8 @@ $createcategory = "createcategory.php";
 $viewcategory = "viewcategory.php";
 $categoryPage = "category.php";
 $home = "home.php";
+$login = "login.php";
+$collection = "collection.php";
 
 $isAdmin = false; // Initialize isAdmin as false
 
@@ -120,7 +122,7 @@ if (isset($_GET['id'])) {
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
         <li><a href="<?= $home; ?>">Home Page</a></li>
-        <li><a href="<?= $categoryPage; ?>">See your full Catalogue</a></li>
+        <li><a href="<?= $categoryPage; ?>">Categories</a></li>
         <?php foreach ($categories as $cat) : ?>
             <!-- Add links to navigate to different category types with descriptions -->
             <li>
@@ -129,9 +131,11 @@ if (isset($_GET['id'])) {
                 </a>
             </li>
         <?php endforeach; ?>
+<!--         <li><a href="<?= $collection; ?>">Books</a></li>
+        <li><a href="<?= $login; ?>">Login</a></li> -->
     </ul>
     <div id="wrapper">
-    <form method="get" action="<?= $home; ?>">
+    <form method="get" action="<?= $viewcategory; ?>">
         <input type="text" name="search_query" placeholder="Search category...">
         <button type="submit">Search</button>
         </form>
@@ -170,7 +174,7 @@ if (isset($_GET['id'])) {
             <button type="submit">Edit</button>
         </form>
     <?php endif; ?>
-        <form method="post" action="<?= $viewcategory; ?>">
+        <form method="post" action="<?= $categoryPage; ?>">
             <button type="submit">Back</button>
         </form> 
 

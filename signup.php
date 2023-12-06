@@ -126,12 +126,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </script>
 </head>
 <body>
+<div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
         <li><a href="<?= $home; ?>">Home Page</a></li>
         <li><a href="<?= $category; ?>">Categories</a></li>
-        <li><a href="<?= $login; ?>">Sign Up</a></li>
-        <li><a href="<?= $about; ?>">Settings</a></li>
+        <li><a href="<?= $collection; ?>">Books</a></li>
+        <li><a href="<?= $loginlink; ?>">Login</a></li>
     </ul>
     <?php if (!empty($errors)): ?>
         <div class="error">
@@ -141,8 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </ul>
         </div>
     <?php else: ?>
-        <div id="wrapper">
-        <p>Create your account</p>
+        <h2>Create your account</h2>
         <form method="post" action="<?= $login; ?>">
             <label for="name">Full Name</label>
             <input id="name" name="name"><br>

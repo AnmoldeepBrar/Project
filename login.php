@@ -91,12 +91,13 @@ if (isset($_POST['logout'])) {
     <title>@Brar Book Store</title>
 </head>
 <body>
+<div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
         <li><a href="<?= $home; ?>">Home Page</a></li>
         <li><a href="<?= $category; ?>">Categories</a></li>
+        <li><a href="<?= $collection; ?>">Books</a></li>
         <li><a href="<?= $login; ?>">Sign Up</a></li>
-        <li><a href="<?= $about; ?>">Settings</a></li>
     </ul>
     <?php if (!empty($errors)): ?>
         <div class="error">
@@ -114,7 +115,6 @@ if (isset($_POST['logout'])) {
             </form>
         </div>
     <?php else: ?>
-        <div id="wrapper">
             <p>Login to your account</p>
             <form method="post" action="<?= $loginPage; ?>">
                 <!-- Login form fields -->
