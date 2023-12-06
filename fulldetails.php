@@ -127,12 +127,12 @@ if (isset($_GET['search_query']) && !empty($_GET['search_query'])) {
     <title>@Brar Book Store</title>
 </head>
 <body>
+<div id="wrapper">
     <h1>@Brar Book Store: Online Library</h1>
     <ul id="links">
         <li><a href="<?= $view; ?>">See your full Catalogue</a></li>
         <li><a href="<?= $insert; ?>">Add book to your Collection</a></li>
     </ul> 
-    <div id="wrapper">
     <form method="get" action="<?= $home; ?>">
         <input type="text" name="search_query" placeholder="Search category...">
         <button type="submit">Search</button>
