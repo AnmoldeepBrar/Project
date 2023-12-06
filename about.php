@@ -33,6 +33,7 @@ $member = "members.php";
     <ul id="links">
         <li><a href="<?= $home; ?>">Home Page</a></li>
         <li><a href="<?= $category; ?>">Categories</a></li>
+        <li><a href="<?= $collection; ?>">Books</a></li>
         <li><a href="<?= $about; ?>">Settings</a></li>
     </ul>
         <p>Settings</p>
